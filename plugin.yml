@@ -1,0 +1,8 @@
+name: AdminTools
+version: 1.0
+main: de.cric_hammel.admintools.Main
+api-version: 1.20
+
+commands:
+   getitems:
+      description: Get all the items
