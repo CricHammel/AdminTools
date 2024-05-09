@@ -18,6 +18,7 @@ import org.bukkit.projectiles.ProjectileSource;
 
 import de.cric_hammel.admintools.Main;
 import de.cric_hammel.admintools.util.MessageSender;
+import de.cric_hammel.admintools.util.Settings;
 
 public class MobClearer extends CustomItem {
 
@@ -37,8 +38,9 @@ public class MobClearer extends CustomItem {
 			}
 			
 			Player p = (Player) shooter;
-			int r = Main.settings.getMobClearerRadius();
-			List<EntityType> excludedTypes = Main.settings.getMobClearerExcludedTypes();
+			Settings settings = Main.getSettings();
+			int r = settings.getMobClearerRadius();
+			List<EntityType> excludedTypes = settings.getMobClearerExcludedTypes();
 			Collection<Entity> entities = potion.getWorld().getNearbyEntities(potion.getLocation(), r, r, r, e -> !excludedTypes.contains(e.getType()));
 			Map<EntityType, Integer> counts = new HashMap<EntityType, Integer>();
 			entities.forEach(e -> {

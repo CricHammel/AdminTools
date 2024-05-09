@@ -9,6 +9,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import de.cric_hammel.admintools.commands.AdminToolsCommand;
 import de.cric_hammel.admintools.commands.GetItemsCommand;
 import de.cric_hammel.admintools.items.CustomItem;
 import de.cric_hammel.admintools.items.MobClearer;
@@ -20,7 +21,7 @@ public class Main extends JavaPlugin {
 	private static Main plugin;
 	private static FileConfiguration config;
 	
-	public static Settings settings;
+	private static Settings settings;
 	
 	private static List<CustomItem> items = new ArrayList<CustomItem>();
 	public static final String LORE_ID = ChatColor.MAGIC + "admintools";
@@ -33,6 +34,7 @@ public class Main extends JavaPlugin {
 		settings = new Settings(config, plugin);
 		
 		getCommand("getitems").setExecutor(new GetItemsCommand());
+		getCommand("admintools").setExecutor(new AdminToolsCommand());
 		
 		PluginManager pluginManager = Bukkit.getPluginManager();
 		pluginManager.registerEvents(new InventoryManager.Listeners(), plugin);
@@ -55,5 +57,9 @@ public class Main extends JavaPlugin {
 
 	public static List<CustomItem> getItems() {
 		return items;
+	}
+	
+	public static Settings getSettings() {
+		return settings;
 	}
 }
